@@ -1,0 +1,115 @@
+Rocketseat React Class
+
+REACT - biblioteca JavaScript p criação de interfaces usando componetização
+Não é framework pq ela apenas renderiza os componentes da camada de visualização de uma aplicação
+Angular e Vue são frameworks q permitem criar funções complexas
+
+Benefícios da componentização no ReactJS: produtividade, manutenção e reaproveitamento de código
+
+VITE - conj de ferramentas e funcionalidades pré-configuradas p iniciar um proj ReactJS, VueJS ...
+
+
+> npm create vite@latest
+  name: disney-vite
+
+> cd disney-vite
+> npm install
+> npm run dev
+
+
+MUI + Styled-components
+  https://mui.com/material-ui/getting-started/installation/
+  > https://mui.com/material-ui/getting-started/installation/
+
+
+To correct error "is missing in props validationeslintreact/prop-types"
+  https://bobbyhadz.com/blog/react-eslint-error-missing-in-props-validation
+  https://www.positioniseverything.net/is-missing-in-props-validation/
+  Transient props https://styled-components.com/docs/api#transient-props
+
+  > npm i prop-types
+
+  components > Button > index.js
+    import { PropTypes } from 'prop-types'
+
+    Button.propTypes = {
+      title: PropTypes.string.isRequired,
+      loading: PropTypes.string.isRequired
+    }
+
+
+REACT ICONS
+https://react-icons.github.io/react-icons/
+https://react-icons.github.io/react-icons/icons?name=ri
+  > npm install react-icons --save
+
+    import { IconName } from "react-icons/ri";
+
+
+**** DESISTI DE USAR E DESINSTALEI ******
+PARALLAX NO BACKGROUND
+  https://www.npmjs.com/package/react-scroll-parallax
+  https://react-scroll-parallax.damnthat.tv/docs/usage/components/parallax-provider
+  https://codesandbox.io/s/react-scroll-parallax-hero-banner-forked-veoq3s?file=/src/App.tsx
+
+  > npm install react-scroll-parallax
+
+
+ROTAS
+React Router DOM - lib p aplicar navegação no projeto
+  https://v5.reactrouter.com/web/guides/quick-start
+  https://www.npmjs.com/package/react-router-dom
+
+  > npm i react-router-dom
+
+  Criar pasta routes
+  Criar Arquivos
+    app.routes.jsx    p rotas da aplicação
+    auth.routes.jsx    p rotas da autenticação (páginas de login e cadastro)
+    index.jsx
+
+  Após criar os arquivos acima vai no main.jsx e trocar as rotas específicas por Routes
+    main.jsx
+      APAGAR
+        import { Details } from './pages/Details'
+        ...
+        import { New } from './pages/New'
+      
+      ADICIONAR
+        import { Routes } from './routes'
+
+      APAGAR
+        {/* <Details /> */}
+        {/* <Home /> */}
+        {/* <SignIn /> */}
+        {/* <SignUp /> */}
+        {/* <Profile /> */}
+        <New />
+
+      ADICIONAR
+        <Routes />
+
+  Com as rotas prontas usa Link do react-router-dom p navegar pelos botões
+  Substitui as tags "a" por Link
+  O Link guarda o histórico de navegação, ele memoriza a página de navegação p avançar e voltar
+
+
+
+****************************************************
+BACK-END
+
+JSON SERVER
+> npm i json-server --save-dev
+
+Executa o Json server
+> npx json-server --watch db.json
+
+Criei no package.json o script p executar o json server
+  "scripts": {
+      "server": "json-server --watch src/db/db.json",
+  }
+
+  >  npm run server
+
+
+> 
