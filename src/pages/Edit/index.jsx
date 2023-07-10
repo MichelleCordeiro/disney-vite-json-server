@@ -11,19 +11,17 @@ import { Buttons } from '../../components/Buttons'
 import { Container, Form } from './styles'
 
 
-export function New() {
+export function Edit() {
   const [persons, setPersons] = useState([])
   const [name, setName] = useState('')
   const [infos, setInfos] = useState('')
   const [tags, setTags] = useState('')
-  const [imageUrl, setImageUrl] = useState('')
-  let tagsList =[]
   
   const navigate = useNavigate()
   const { id } = useParams()
 
   useEffect(() => {
-    fetch('http://localhost:3333/persons')
+    fetch('http://localhost:3333/persons/' + id)
       .then(res => res.json())
       .then(data => {
         setPersons(data)
@@ -34,9 +32,7 @@ export function New() {
     }, []
   )
 
-  tagsList = persons.map((p) => p.tags )
-  tagsList = [... new Set(tagsList)]
-    
+  
   function handleSubmit(e) {
     e.preventDefault()
 
@@ -44,7 +40,7 @@ export function New() {
       fetch('http://localhost:3333/persons/' + id, {
         method: 'PUT',
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, infos, tags, imageUrl })
+        body: JSON.stringify({ name, infos, tags })
       }).then (() => {
         console.log("Registro alterado!")
         navigate('/')
@@ -56,7 +52,7 @@ export function New() {
       fetch('http://localhost:3333/persons', {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, infos, tags, imageUrl })
+        body: JSON.stringify({ name, infos, tags })
       }).then (() => {
         console.log("Novo registro criado!")
         navigate('/')
@@ -73,30 +69,28 @@ export function New() {
       <main>
         <Form onSubmit={handleSubmit}>
           <header>
-            <h1>Adicionar personagem</h1>
+            <h1>Editar personagem</h1>
           </header>
           
           <Input 
-            value={name}
+            defaultValue={persons.name}
             placeholder="Nome" 
             onChange={(e) => setName(e.target.value)} 
             required
           />
 
           <Textarea 
-            defalultValue={infos}
+            defaultValue={persons.infos}
             placeholder="Informações" 
             onChange={(e) => setInfos(e.target.value)}
           />
 
           <Section title="Marcadores">
             <div className="tags">
-              { tagsList.map((tags) => 
-
                 <Link 
                   to={""} 
-                  key={tags} 
-                  id={tags} 
+                  key={persons.tags} 
+                  id={persons.tags} 
                   // isActive={false}
                   onClick={(e) => {
                     setTags(e.target.value)
@@ -114,7 +108,6 @@ export function New() {
 
                   <NoteItem value={tags} />
                 </Link>
-              )}
 
               <NoteItem 
                 isNew 
@@ -124,8 +117,9 @@ export function New() {
             </div>
           </Section>
 
-          <Buttons />
-
+          <div id='btns'>
+            <Buttons />
+          </div>
         </Form>
       </main>
     </Container>

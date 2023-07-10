@@ -19,7 +19,7 @@ VITE - conj de ferramentas e funcionalidades pré-configuradas p iniciar um proj
 
 MUI + Styled-components
   https://mui.com/material-ui/getting-started/installation/
-  > https://mui.com/material-ui/getting-started/installation/
+  > npm install @mui/material @mui/styled-engine-sc styled-components
 
 
 To correct error "is missing in props validationeslintreact/prop-types"

@@ -1,21 +1,40 @@
 import { useEffect, useState } from 'react';
 import { FiPlus, FiSearch } from 'react-icons/fi'
+import { VscGraph } from "react-icons/vsc";
+import { Link } from 'react-router-dom';
 
-import { ContainerHome, Brand, Menu, Search, Content, NewPerson, Person, Tag } from './styles';
 
 import { Header } from '../../components/Header'
 import { ButtonText } from '../../components/ButtonText'
 import { Input } from '../../components/Input'
 import { Section } from '../../components/Section'
-import { Link } from 'react-router-dom';
+// import { SearchBar } from '../../components/SearchBar';
 // import { Person } from '../../components/Person'
 // import { Tag } from '../../components/Tag'
 
+import { 
+  ContainerHome, 
+  Brand, 
+  Menu, 
+  Search, 
+  Content, 
+  NewPerson, 
+  Dashboard,
+  Person, 
+  Tag 
+} from './styles';
+
+
 export function Home() {
   const [persons, setPersons] = useState([])
+  const [message, setMessage] = useState('')
+
+  const handleChange = (e) => {
+    setMessage(e.target.value)
+  }
 
   useEffect(() => {
-    fetch('http://localhost:3000/persons')
+    fetch('http://localhost:3333/persons')
       .then(resp => resp.json())
       .then(data => {
         setPersons(data)
@@ -23,8 +42,10 @@ export function Home() {
       .catch(err => {
         console.error(err)
       })
-  }, [])
-
+    }, []
+  )
+  
+  const tagsList = [... new Set(persons.map((p) => p.tags))]
 
   return (
     <ContainerHome>
@@ -35,38 +56,58 @@ export function Home() {
       <Header />
 
       <Menu>
-        <li><ButtonText title="Todos" isActive/></li>
-        <li><ButtonText title="Pessoas" /></li>
-        <li><ButtonText title="Animais" /></li>
-        <li><ButtonText title="Objetos" /></li>
-        <li><ButtonText title="Outros" /></li>
+        <li><ButtonText title="Todos Static" isActive/></li>
+        <li><ButtonText title="Teste Static" /></li>
+
+        { tagsList.map((t) => 
+          <li key={t}><ButtonText title={t} /></li>
+        )}
       </Menu>
 
       <Search>
-        <Input placeholder="Pesquisar por personagem" icon={ FiSearch }/>
+        <Input 
+          placeholder="Pesquisar por personagem" 
+          icon={ FiSearch }
+          onChange={handleChange}
+        />
       </Search>
 
       <Content>
         <Section title="Meus personagens">
-          {persons.map((p) => 
+          <div className="cards">
+            {persons.filter((res) => {
 
-            <Person key={p.id} >
-              <Link to={"/details/" + p.id} >
-                <h2>{p.name}</h2>
+              if (message === "") {
+                return res;
+              } 
+              else if ( res.name?.toLowerCase().includes(message?.toLocaleLowerCase()) ) {
+                return res
+              }
+              
+            }).map((res) => (
+              <Person key={res.id} >
+                <Link to={"/details/" + res.id} id='card' >
+                  <h2>{res.name}</h2>
 
-                {
-                  p.tags &&
-                  <footer>
                     {
-                      <Tag>
-                        {p.tags}
-                      </Tag>
+                      res.tags &&
+                      <footer>
+                        {
+                          <Tag>
+                            {res.tags}
+                          </Tag>
+                        }
+                      </footer>
                     }
-                  </footer>
-                }
-              </Link>
-            </Person>
-          )}
+                </Link>
+              </Person>
+            // )}}
+            )) }
+          </div>
+
+          <div className="cards">
+
+          </div>
         </Section>
       </Content>
 
@@ -74,8 +115,11 @@ export function Home() {
         <FiPlus />
           Adicionar personagem
       </NewPerson>
+
+      <Dashboard to="/dashboard">
+        <VscGraph />
+          Dashboard
+      </Dashboard>
     </ContainerHome>
-
-
   )
 }

@@ -1,5 +1,5 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom'
 
 export const Container = styled.header`
   grid-area: header;
@@ -34,7 +34,7 @@ export const Profile = styled(Link)`
 
     span {
       font-size: 1.4rem;
-      color: ${({ theme }) => theme.COLORS.GREEN_100};
+      color: ${({ theme }) => theme.COLORS.GRAY_100};
     }
 
     strong {
@@ -49,7 +49,7 @@ export const Logout = styled.div`
   background: none;
 
   > svg {
-    color: ${({ theme }) => theme.COLORS.GREEN_100};
+    color: ${({ theme }) => theme.COLORS.GRAY_100};
     font-size: 3.6rem;
 
   }

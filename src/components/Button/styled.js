@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.button`
   width: 100%;
   color: ${({ theme }) => theme.COLORS.BACKGROUND_900 };
+  background-color: ${({ theme }) => theme.COLORS.GREEN_200 };
   
   height: 5.6rem;
   border: 0;
@@ -16,5 +17,5 @@ export const Container = styled.button`
     opacity: 0.5;
     cursor: wait;
   }
-  background-color: ${({ theme }) => theme.COLORS.GREEN_200 };
+  
 `

@@ -7,11 +7,12 @@ export const ContainerHome = styled.div`
 
   display: grid;
   grid-template-columns: 25rem auto;
-  grid-template-rows: 105px 150px auto 64px;
+  grid-template-rows: 105px 150px auto 64px 64px;
   grid-template-areas:
     "brand header"
     "menu search"
     "menu content"
+    "dashboard content"
     "newperson content"
   ;
   background-color: ${({ theme }) => theme.COLORS.BACKGROUND_800};
@@ -48,14 +49,59 @@ export const Menu = styled.ul`
 
 export const Search = styled.div`
   grid-area: search;
-  padding: 6.4rem;
+  padding: 6.4rem 8rem;
   /* margin-bottom: 5rem; */
 `
 
 export const Content = styled.div`
   grid-area: content;
-  padding: 0 6.4rem;
+  padding: 0 8rem;
   overflow-y: auto;
+
+  .cards {
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(35rem, 1fr));
+    gap: 2rem;
+  }  
+`
+
+export const Person = styled.button`
+  width: 35rem;
+  height: 15rem;
+  padding: 2.2rem;
+  margin-bottom: 1.6rem;
+
+  background-color: ${({ theme }) => theme.COLORS.BACKGROUND_700};
+  border: none;
+  border-radius: 10px;
+  
+  
+  &:hover {
+    transform: scale(1.05);
+    transition: transform 300ms;
+  }
+
+  > a {
+    color: ${({ theme }) => theme.COLORS.WHITE};
+    text-decoration: none;
+    margin-bottom: 1rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 2rem;
+    
+    > h2 {
+      flex: 1;
+      font-family: 'Roboto sLAB', 'serif';
+      font-size: 2.rem;
+      font-weight: 700;
+      text-align: left;
+      color: ${({ theme }) => theme.COLORS.WHITE};
+    }
+  }
 `
 
 export const NewPerson = styled(Link)`
@@ -75,36 +121,21 @@ export const NewPerson = styled(Link)`
   }
 `
 
-export const Person = styled.button`
-  width: 100%;
-  padding: 2.2rem;
-  margin-bottom: 1.6rem;
+export const Dashboard = styled(Link)`
+  grid-area: dashboard;
 
-  background-color: ${({ theme }) => theme.COLORS.BACKGROUND_700};
+  background-color: ${({ theme }) => theme.COLORS.GREEN_50};
+  color: ${({ theme }) => theme.COLORS.BACKGROUND_900};
+  font-weight: bold;
   border: none;
-  border-radius: 10px;
-  
-  > a {
-    text-decoration: none;
-    margin-bottom: 1rem;
 
-    color: ${({ theme }) => theme.COLORS.WHITE};
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    
-    gap: 2rem;
-    
-    > h2 {
-      flex: 1;
-      font-family: 'Roboto sLAB', 'serif';
-      font-size: 2.rem;
-      font-weight: 700;
-      text-align: left;
-      color: ${({ theme }) => theme.COLORS.WHITE};
-    }
-  } 
+  svg {
+    margin-right: 0.8rem;
+  }
 `
 
 export const Tag = styled.span`

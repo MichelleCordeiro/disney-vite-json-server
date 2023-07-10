@@ -15,24 +15,12 @@ export const Container = styled.div`
     overflow-y: auto;
     
     display: flex;
-    padding: 6.4rem 0;
+    padding: 6.4rem 0 0 0;
   }
-  `;
-
-export const Links = styled.ul`
-  list-style: none;
-  
-  > li {
-    margin-top: 1.2rem;
-    
-    a {
-      color: ${({ theme }) => theme.COLORS.WHITE};
-    }
-  }
-  `
+`
 
 export const Content = styled.div`
-  min-width: 550px;
+  min-width: 700px;
   height: min-content;
   margin: 0 auto;
 
@@ -48,21 +36,28 @@ export const Content = styled.div`
     line-height: 6rem;
 
     h1 {
-      font-size: 4rem;
+      font-size: 3rem;
+    }
+
+    #btnDel {
+      color: ${({ theme }) => theme.COLORS.GREEN_50};
     }
   }
 
   > h2 {
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: 500;
     padding-bottom: 2rem;
   }
 
   > p {
-    max-width: 550px;
-    text-align: justify;
-    margin-bottom: 2.4rem;
-    line-height: 2.5rem;
-  }
+    max-width: 700px;
+    min-height: auto;
 
+    font-size: 1.8rem;
+    text-align: start;
+    line-height: 3rem;
+
+    margin-bottom: 4rem;
+  }
 `
