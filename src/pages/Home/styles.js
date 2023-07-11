@@ -45,6 +45,10 @@ export const Menu = styled.ul`
   > li {
     margin-bottom: 2.4rem;
   }
+
+  .isActive {
+    color: ${({ theme }) => theme.COLORS.GREEN_200};
+  }
 `
 
 export const Search = styled.div`

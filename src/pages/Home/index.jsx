@@ -18,7 +18,7 @@ import {
   Search, 
   Content, 
   NewPerson, 
-  Dashboard, 
+  Dashboard,
   Person, 
   Tag 
 } from './styles';
@@ -36,30 +36,26 @@ export function Home() {
   const handleChange = (e) => {
     setMessage(e.target.value)
   }
-
-  // pega palavra p filtro da categoria
-  const handleClick = (category) => {
-    setCategory(category)
-  }
   
   // filtro do search
   const filteredSearch = (() =>
-    document.querySelector(".categoria").classList.add('hide'),
-    // document.querySelector(".busca").classList.remove('hide'),
-    console.log(document.querySelector(".categoria")),
-
-    persons.filter((res) => 
-    res.name?.toLowerCase().includes(message?.toLocaleLowerCase()) || !message
+  document.querySelector(".categoria").classList.add('hide'),
+  
+  persons.filter((res) => 
+  res.name?.toLowerCase().includes(message?.toLocaleLowerCase()) || !message
   ))
+  
+  // pega palavra p filtro da categoria
+  const handleClick = (category) => {
+    setCategory(category)
+    // document.querySelector(category).classList.add("isActive")
+    // document.querySelector(".menuTodas").classList.remove("isActive")
+    // document.querySelector(".menuTodas").classList.remove("isActive")
+  }
 
   // filtro da categoria
   const filteredCategory = (() =>
-    document.querySelector(".busca").setAttributeNodeNS('className','hide'),
-    // document.querySelector(".busca").classList.add('hide'),
-
-    // document.querySelector(".categoria").classList.remove('hide'),
-    console.log(document.querySelector(".busca")),
-
+    setShow(!show),
 
     persons.filter((res) => 
     res.tags?.toLowerCase().includes(category?.toLocaleLowerCase()) || !category
@@ -88,11 +84,22 @@ export function Home() {
       <Header />
 
       <Menu>
-        <li><ButtonText title="Todos Static" onClick={() => handleClick(persons.tags)} isActive/></li>
+        <li>
+          <ButtonText 
+            title="Todas" 
+            className={"menuTodas isActive"} 
+            onClick={() => handleClick(persons.tags)} 
+            // isActive
+          />
+        </li>
 
         { tagsList.map((t) => 
             <li key={t}>
-              <ButtonText title={t} onClick={() => (handleClick(t), changeFilter())} />
+              <ButtonText 
+                title={t} 
+                className={t} 
+                onClick={() => (handleClick(t), changeFilter())} 
+              />
             </li>
           )
         }
@@ -111,6 +118,31 @@ export function Home() {
         <div className='persons '>
           <Section title="Meus personagens">
             {show ? (
+              <div className="cards categoria">
+                {
+                  filteredCategory.map((res) => {
+                    return (
+                      <Person key={res.id} >
+                        <Link to={"/details/" + res.id} id='card' >
+                          <h2>{res.name}</h2>
+
+                          {
+                            res.tags &&
+                            <footer>
+                              {
+                                <Tag>
+                                  {res.tags}
+                                </Tag>
+                              }
+                            </footer>
+                          }
+                        </Link>
+                      </Person>
+                    )
+                  })
+                }
+              </div>
+            ) : (
               <div className="cards busca">
               {
                 filteredSearch.length > 0 ? (
@@ -138,33 +170,7 @@ export function Home() {
                   <p id='EmptySearch'>Nenhum personagem encontrado</p>
                 )
               }
-              </div>
-            ) : (
-
-              <div className="cards categoria">
-                {
-                  filteredCategory.map((res) => {
-                    return (
-                      <Person key={res.id} >
-                        <Link to={"/details/" + res.id} id='card' >
-                          <h2>{res.name}</h2>
-
-                          {
-                            res.tags &&
-                            <footer>
-                              {
-                                <Tag>
-                                  {res.tags}
-                                </Tag>
-                              }
-                            </footer>
-                          }
-                        </Link>
-                      </Person>
-                    )
-                  })
-                }
-              </div>
+              </div>              
             )}
           </Section>
         </div>
@@ -174,7 +180,7 @@ export function Home() {
         </div>
       </Content>
 
-      <Dashboard to="">
+      <Dashboard to="/dashboard">
         <VscGraph />
         Dashboard
       </Dashboard>
