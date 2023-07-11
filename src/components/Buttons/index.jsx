@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Button } from '../Button/index.jsx'
 
-import { Container } from './styled.js'
+import { Container } from './styles.js'
 
 export function Buttons() {
   return (

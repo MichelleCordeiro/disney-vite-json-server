@@ -117,9 +117,7 @@ export function Edit() {
             </div>
           </Section>
 
-          <div id='btns'>
-            <Buttons />
-          </div>
+          <Buttons />
         </Form>
       </main>
     </Container>

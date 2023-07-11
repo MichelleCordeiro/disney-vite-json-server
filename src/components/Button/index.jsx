@@ -1,5 +1,5 @@
 import { PropTypes } from 'prop-types'
-import { Container } from './styled.js'
+import { Container } from './styles.js'
 
 export function Button({ title, loading = false, ...rest }) {
   return (

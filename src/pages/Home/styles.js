@@ -64,7 +64,16 @@ export const Content = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(35rem, 1fr));
     gap: 2rem;
-  }  
+  }
+
+  .hide {
+    display: none;
+  }
+
+  #EmptySearch {
+    padding-top: 3rem;
+    color: ${({ theme }) => theme.COLORS.WHITE};
+  }
 `
 
 export const Person = styled.button`
@@ -104,10 +113,10 @@ export const Person = styled.button`
   }
 `
 
-export const NewPerson = styled(Link)`
-  grid-area: newperson;
+export const Dashboard = styled(Link)`
+  grid-area: dashboard;
 
-  background-color: ${({ theme }) => theme.COLORS.GREEN_200};
+  background-color: ${({ theme }) => theme.COLORS.GREEN_50};
   color: ${({ theme }) => theme.COLORS.BACKGROUND_900};
   font-weight: bold;
   border: none;
@@ -121,10 +130,10 @@ export const NewPerson = styled(Link)`
   }
 `
 
-export const Dashboard = styled(Link)`
-  grid-area: dashboard;
+export const NewPerson = styled(Link)`
+  grid-area: newperson;
 
-  background-color: ${({ theme }) => theme.COLORS.GREEN_50};
+  background-color: ${({ theme }) => theme.COLORS.GREEN_200};
   color: ${({ theme }) => theme.COLORS.BACKGROUND_900};
   font-weight: bold;
   border: none;

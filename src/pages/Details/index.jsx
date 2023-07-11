@@ -5,7 +5,7 @@ import { Header } from '../../components/Header/index.jsx'
 import { Section } from '../../components/Section/index.jsx'
 import { Tag } from '../../components/Tag/index.jsx'
 import { ButtonText } from '../../components/ButtonText/index.jsx'
-import { Buttons } from '../../components/Buttons/index.jsx'
+import { Button } from '../../components/Button/index.jsx'
 
 import { Container, Content } from './styles.js'
 
@@ -68,7 +68,15 @@ export function Details(){
             <Tag title={persons.tags} />
           </Section>
 
-          <Buttons />
+          <div id='btns'>
+            <Link to={"/"}>
+              <Button title="Voltar" id="btnBack" />
+            </Link>
+
+            <Link to={"/edit/" + id}>
+              <Button title="Editar" />
+            </Link>
+          </div>
         </Content>
       </main>
     </Container>

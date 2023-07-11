@@ -94,6 +94,21 @@ React Router DOM - lib p aplicar navegação no projeto
   O Link guarda o histórico de navegação, ele memoriza a página de navegação p avançar e voltar
 
 
+GRÁFICOS
+
+RECHART
+https://recharts.org/en-US/guide/getting-started
+> npm install recharts
+
+
+https://developer.semrush.com/intergalactic/get-started-guide/dev-starter-guide/
+https://developer.semrush.com/intergalactic/data-display/chart-showcase/
+
+https://codesandbox.io/s/nifty-cannon-em0v3b
+> npm i @semcore/ui400} height={400}>
+          <Pie data={persons} dataKey="tags" cx="50%" cy="50%" outerRadius={60} fill="#8884d8" />
+          <Pie data={persons} dataKey="tags" cx="50%" cy="50%" innerRadius={70} outerRadius={90} fill="#82ca9d" label />
+        </PieChart>
 
 ****************************************************
 BACK-END

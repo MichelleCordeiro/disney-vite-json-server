@@ -55,4 +55,8 @@ export default createGlobalStyle`
     filter: brightness(0.7);
   }
 
+  .hide {
+    display: none;
+  }
+
 `
