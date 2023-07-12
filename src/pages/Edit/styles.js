@@ -49,6 +49,14 @@ export const Form = styled.form`
       min-width: 270px;
     }
 
+    .inputTag {
+      font-size: 1.6rem;
+      padding: 0.5rem 1.4rem;
+      border-radius: 0.5rem;
+      margin-right: 0.6rem;
+      background-color: ${({ theme }) => theme.COLORS.BACKGROUND_900};
+    }
+
     .isActive {
       background-color: ${({ theme }) => theme.COLORS.GREEN_200};
       

@@ -8,17 +8,14 @@ import { Header } from '../../components/Header'
 import { ButtonText } from '../../components/ButtonText'
 import { Input } from '../../components/Input'
 import { Section } from '../../components/Section'
-// import { Dashboard } from '../../components/Dashboard'
-// import { Person } from '../../components/Person'
-// import { Tag } from '../../components/Tag'
 
 import { 
   ContainerHome, 
   Menu, 
   Search, 
   Content, 
-  NewPerson, 
   Dashboard,
+  NewPerson, 
   Person, 
   Tag 
 } from './styles';
@@ -48,9 +45,6 @@ export function Home() {
   // pega palavra p filtro da categoria
   const handleClick = (category) => {
     setCategory(category)
-    // document.querySelector(category).classList.add("isActive")
-    // document.querySelector(".menuTodas").classList.remove("isActive")
-    // document.querySelector(".menuTodas").classList.remove("isActive")
   }
 
   // filtro da categoria
@@ -105,7 +99,7 @@ export function Home() {
         }
       </Menu>
 
-      <Search>
+      <Search className=''>
         <Input 
           placeholder="Pesquisar por personagem" 
           icon={ FiSearch }
@@ -175,9 +169,9 @@ export function Home() {
           </Section>
         </div>
 
-        <div className='graph hide'>  
+        {/* <div className='graph'>
           <Dashboard />
-        </div>
+        </div> */}
       </Content>
 
       <Dashboard to="/dashboard">

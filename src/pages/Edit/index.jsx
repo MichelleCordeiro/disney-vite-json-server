@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import { Header } from '../../components/Header'
 import { Input } from '../../components/Input'
 import { Textarea } from '../../components/Textarea'
-import { NoteItem } from '../../components/NoteItem'
 import { Section } from '../../components/Section'
 import { Buttons } from '../../components/Buttons'
 
@@ -29,10 +28,9 @@ export function Edit() {
       .catch(err => {
         console.error(err)
       })
-    }, []
+    }, [id]
   )
-
-  
+    
   function handleSubmit(e) {
     e.preventDefault()
 
@@ -61,6 +59,7 @@ export function Edit() {
       })
     }
   }
+
   
   return (
     <Container>
@@ -73,47 +72,29 @@ export function Edit() {
           </header>
           
           <Input 
+            name={persons.name}
+            placeholder={persons.name}
             defaultValue={persons.name}
-            placeholder="Nome" 
-            onChange={(e) => setName(e.target.value)} 
-            required
+
+            onChange={(e) => e.target.value !== "" ? setName(e.target.value) : ""}
+              // required)
           />
 
           <Textarea 
+            name={persons.infos}
             defaultValue={persons.infos}
-            placeholder="Informações" 
-            onChange={(e) => setInfos(e.target.value)}
+            onChange={(e) => e.target.value !== "" ? setInfos(e.target.value) : ""}
           />
 
-          <Section title="Marcadores">
+          <Section title="Categoria">
             <div className="tags">
-                <Link 
-                  to={""} 
-                  key={persons.tags} 
-                  id={persons.tags} 
-                  // isActive={false}
-                  onClick={(e) => {
-                    setTags(e.target.value)
-                    const patPressedTag = document.querySelector(`#${e.target.value} .bzWzyK`)
-
-                    if(patPressedTag.classList.contains('isActive')) {
-                      setTags('Não definido')
-                      patPressedTag.classList.remove('isActive')
-                    }
-                    else {
-                      setTags(e.target.value)
-                      patPressedTag.classList.add('isActive')
-                    }
-                  }}>
-
-                  <NoteItem value={tags} />
-                </Link>
-
-              <NoteItem 
-                isNew 
-                placeholder="Nova tag" 
-                onChange={(e) => setTags(e.target.value)}
+              <Input 
+                name={persons.tags}
+                className={"inputTag"} 
+                defaultValue={persons.tags}
+                onChange={(e) => e.target.value !== "" ? setTags(e.target.value) : ""}
               />
+
             </div>
           </Section>
 

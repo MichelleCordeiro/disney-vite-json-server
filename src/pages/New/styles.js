@@ -40,20 +40,38 @@ export const Form = styled.form`
     }
   }
 
-  .tags {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+  Textarea {
+    margin-bottom: 3rem;
+  }
 
-    div {
-      min-width: 270px;
-    }
+  Section {
+    margin-bottom: 0;
 
-    .isActive {
-      background-color: ${({ theme }) => theme.COLORS.GREEN_200};
+    .tags {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
       
-      input{
+      div {
+        min-width: 270px;
+        margin-bottom: 1.2rem;
+        padding: 0;
+        
+        input {
+          font-size: 1.5rem;
+          width: 100%;
+          border-radius: 10px;
+          cursor: pointer;
+        }
+      }
+
+      .isActive {
+        background-color: ${({ theme }) => theme.COLORS.GREEN_100} !important;
         color: ${({ theme }) => theme.COLORS.BACKGROUND_900};
+        
+        input{
+          color: ${({ theme }) => theme.COLORS.BACKGROUND_900};
+        }
       }
     }
   }

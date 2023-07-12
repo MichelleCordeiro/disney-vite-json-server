@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import { Header } from '../../components/Header'
 import { Input } from '../../components/Input'
@@ -89,31 +89,35 @@ export function New() {
             onChange={(e) => setInfos(e.target.value)}
           />
 
-          <Section title="Marcadores">
+          <Section title="Categoria">
             <div className="tags">
               { tagsList.map((tags) => 
 
-                <Link 
-                  to={""} 
+                <span 
                   key={tags} 
                   id={tags} 
                   // isActive={false}
                   onClick={(e) => {
                     setTags(e.target.value)
-                    const patPressedTag = document.querySelector(`#${e.target.value} .bzWzyK`)
+                    const pressedTag = document.querySelector(`#${e.target.value} .gbswIs`)
 
-                    if(patPressedTag.classList.contains('isActive')) {
+                    if(pressedTag.classList.contains('isActive')) {
                       setTags('Não definido')
-                      patPressedTag.classList.remove('isActive')
+                      pressedTag.classList.remove('isActive')
                     }
                     else {
                       setTags(e.target.value)
-                      patPressedTag.classList.add('isActive')
+
+                      tagsList.map(t => {
+                        const eachTag = document.querySelector('t .gbswIs')
+                        pressedTag.classList.add('isActive')
+                      })
                     }
-                  }}>
+                  }}
+                >
 
                   <NoteItem value={tags} />
-                </Link>
+                </span>
               )}
 
               <NoteItem 
